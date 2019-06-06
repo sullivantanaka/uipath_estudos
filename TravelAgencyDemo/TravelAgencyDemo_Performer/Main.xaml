@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Main" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="686,829" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="744,831" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="21">
       <x:String>System.Activities</x:String>
@@ -46,6 +46,7 @@
   <Flowchart sap:VirtualizedContainerService.HintSize="704,751" sap2010:WorkflowViewState.IdRef="Flowchart_1">
     <Flowchart.Variables>
       <Variable x:TypeArguments="ui:Browser" Name="myBrowser" />
+      <Variable x:TypeArguments="scg:IEnumerable(ui:QueueItem)" Name="passageirosList" />
     </Flowchart.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -106,6 +107,7 @@
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
+            <ui:GetQueueItems Duration="{x:Null}" From="{x:Null}" Priority="{x:Null}" Reference="{x:Null}" Skip="{x:Null}" TimeoutMS="{x:Null}" To="{x:Null}" Top="{x:Null}" DisplayName="Get Queue Items" FilterStrategy="StartsWith" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="GetQueueItems_1" QueueItemStates="New, InProgress" QueueName="Passageiros" Result="[passageirosList]" />
           </Sequence>
           <FlowStep.Next>
             <FlowStep x:Name="__ReferenceID2">
@@ -116,58 +118,79 @@
                   <av:PointCollection x:Key="ConnectorLocation">300,380.5 300,430.5</av:PointCollection>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <Sequence DisplayName="Processar itens" sap:VirtualizedContainerService.HintSize="336,604" sap2010:WorkflowViewState.IdRef="Sequence_10">
+              <Sequence DisplayName="Processar itens" sap:VirtualizedContainerService.HintSize="374,909" sap2010:WorkflowViewState.IdRef="Sequence_10">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Selecionar_Itinerario workflow" sap:VirtualizedContainerService.HintSize="314,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="Selecionar_Itinerario.xaml">
-                  <ui:InvokeWorkflowFile.Arguments>
-                    <InArgument x:TypeArguments="ui:Browser" x:Key="in_browser">[myBrowser]</InArgument>
-                    <InArgument x:TypeArguments="x:String" x:Key="in_departure">Boston</InArgument>
-                    <InArgument x:TypeArguments="x:String" x:Key="in_destination">Rome</InArgument>
-                  </ui:InvokeWorkflowFile.Arguments>
-                  <sap:WorkflowViewStateService.ViewState>
-                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                    </scg:Dictionary>
-                  </sap:WorkflowViewStateService.ViewState>
-                </ui:InvokeWorkflowFile>
-                <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Selecionar_Voo workflow" sap:VirtualizedContainerService.HintSize="314,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="Selecionar_Voo.xaml">
-                  <ui:InvokeWorkflowFile.Arguments>
-                    <InArgument x:TypeArguments="ui:Browser" x:Key="in_browser">[myBrowser]</InArgument>
-                    <InArgument x:TypeArguments="x:String" x:Key="in_flight" />
-                  </ui:InvokeWorkflowFile.Arguments>
-                  <sap:WorkflowViewStateService.ViewState>
-                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                    </scg:Dictionary>
-                  </sap:WorkflowViewStateService.ViewState>
-                </ui:InvokeWorkflowFile>
-                <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Preencher_Dados workflow" sap:VirtualizedContainerService.HintSize="314,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_6" UnSafe="False" WorkflowFileName="Preencher_Dados.xaml">
-                  <ui:InvokeWorkflowFile.Arguments>
-                    <InArgument x:TypeArguments="ui:Browser" x:Key="in_browser" />
-                    <InArgument x:TypeArguments="x:String" x:Key="in_name" />
-                    <InArgument x:TypeArguments="x:String" x:Key="in_address" />
-                    <InArgument x:TypeArguments="x:String" x:Key="in_city" />
-                    <InArgument x:TypeArguments="x:String" x:Key="in_state" />
-                    <InArgument x:TypeArguments="x:String" x:Key="in_zipcode" />
-                    <InArgument x:TypeArguments="x:String" x:Key="in_cardType" />
-                    <InArgument x:TypeArguments="x:String" x:Key="in_ccNumber" />
-                    <InArgument x:TypeArguments="x:String" x:Key="in_month" />
-                    <InArgument x:TypeArguments="x:String" x:Key="in_year" />
-                    <InArgument x:TypeArguments="x:String" x:Key="in_nameCard" />
-                    <InArgument x:TypeArguments="x:String" x:Key="in_email" />
-                  </ui:InvokeWorkflowFile.Arguments>
-                </ui:InvokeWorkflowFile>
-                <Sequence DisplayName="Finalizar Reserva" sap:VirtualizedContainerService.HintSize="314,99" sap2010:WorkflowViewState.IdRef="Sequence_9">
-                  <sap:WorkflowViewStateService.ViewState>
-                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                    </scg:Dictionary>
-                  </sap:WorkflowViewStateService.ViewState>
-                </Sequence>
+                <ui:ForEach x:TypeArguments="ui:QueueItem" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="352,785" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[passageirosList]">
+                  <ui:ForEach.Body>
+                    <ActivityAction x:TypeArguments="ui:QueueItem">
+                      <ActivityAction.Argument>
+                        <DelegateInArgument x:TypeArguments="ui:QueueItem" Name="passageiro" />
+                      </ActivityAction.Argument>
+                      <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="336,651" sap2010:WorkflowViewState.IdRef="Sequence_12">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Selecionar_Itinerario workflow" sap:VirtualizedContainerService.HintSize="314,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="Selecionar_Itinerario.xaml">
+                          <ui:InvokeWorkflowFile.Arguments>
+                            <InArgument x:TypeArguments="ui:Browser" x:Key="in_browser" />
+                            <InArgument x:TypeArguments="x:String" x:Key="in_departure" />
+                            <InArgument x:TypeArguments="x:String" x:Key="in_destination" />
+                          </ui:InvokeWorkflowFile.Arguments>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </ui:InvokeWorkflowFile>
+                        <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Selecionar_Voo workflow" sap:VirtualizedContainerService.HintSize="314,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="Selecionar_Voo.xaml">
+                          <ui:InvokeWorkflowFile.Arguments>
+                            <InArgument x:TypeArguments="ui:Browser" x:Key="in_browser">[myBrowser]</InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_flight">[passageiro.SpecificContent("flight").ToString]</InArgument>
+                          </ui:InvokeWorkflowFile.Arguments>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </ui:InvokeWorkflowFile>
+                        <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Preencher_Dados workflow" sap:VirtualizedContainerService.HintSize="314,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_6" UnSafe="False" WorkflowFileName="Preencher_Dados.xaml">
+                          <ui:InvokeWorkflowFile.Arguments>
+                            <InArgument x:TypeArguments="ui:Browser" x:Key="in_browser">[myBrowser]</InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_name">[passageiro.SpecificContent("name").ToString]</InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_address">[passageiro.SpecificContent("address").ToString]</InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_city">[passageiro.SpecificContent("city").ToString]</InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_state">[passageiro.SpecificContent("state").ToString]</InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_zipcode">[passageiro.SpecificContent("zipcode").ToString]</InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_cardType">[passageiro.SpecificContent("cardType").ToString]</InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_ccNumber">[passageiro.SpecificContent("ccNumber").ToString]</InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_month">[passageiro.SpecificContent("month").ToString]</InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_year">[passageiro.SpecificContent("year").ToString]</InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_nameCard">[passageiro.SpecificContent("nameCard").ToString]</InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_email">[passageiro.SpecificContent("email").ToString]</InArgument>
+                          </ui:InvokeWorkflowFile.Arguments>
+                        </ui:InvokeWorkflowFile>
+                        <Sequence DisplayName="Finalizar Reserva" sap:VirtualizedContainerService.HintSize="314,146" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <ui:SetTransactionStatus ContinueOnError="{x:Null}" Reason="{x:Null}" ServiceBaseAddress="{x:Null}" TimeoutMS="{x:Null}" DisplayName="Set Transaction Status" ErrorType="Business" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="SetTransactionStatus_1" Status="Successful" TransactionItem="[passageiro]">
+                            <ui:SetTransactionStatus.Output>
+                              <scg:Dictionary x:TypeArguments="x:String, InArgument" />
+                            </ui:SetTransactionStatus.Output>
+                          </ui:SetTransactionStatus>
+                        </Sequence>
+                      </Sequence>
+                    </ActivityAction>
+                  </ui:ForEach.Body>
+                </ui:ForEach>
               </Sequence>
               <FlowStep.Next>
                 <FlowStep x:Name="__ReferenceID0">
