@@ -3,7 +3,6 @@
     <x:Property Name="in_browser" Type="InArgument(ui:Browser)" />
     <x:Property Name="out_ticketID" Type="OutArgument(x:String)" />
     <x:Property Name="out_processingDate" Type="OutArgument(x:String)" />
-    <x:Property Name="argument1" Type="InArgument(x:String)" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
